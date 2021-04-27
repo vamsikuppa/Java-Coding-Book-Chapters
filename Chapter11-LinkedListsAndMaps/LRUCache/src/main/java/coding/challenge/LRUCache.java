@@ -9,8 +9,8 @@ public final class LRUCache {
 
         private int key;
         private int value;
-        private Node next;
-        private Node prev;
+        private Node left;
+        private Node right;
 
         @Override
         public String toString() {
@@ -61,8 +61,8 @@ public final class LRUCache {
         } else {
             // this is new key
             Node newNode = new Node();
-            newNode.prev = null;
-            newNode.next = null;
+            newNode.right = null;
+            newNode.left = null;
             newNode.value = value;
             newNode.key = key;
 
@@ -83,10 +83,10 @@ public final class LRUCache {
 
     // helper method to add a node to the top of the cache
     private void addNode(Node node) {
-        node.next = head;
-        node.prev = null;
+        node.left = head;
+        node.right = null;
         if (head != null) {
-            head.prev = node;
+            head.right = node;
         }
         head = node;
         if (tail == null) {
@@ -97,16 +97,16 @@ public final class LRUCache {
     // helper method to remove a node from the cache
     private void removeNode(Node node) {
 
-        if (node.prev != null) {
-            node.prev.next = node.next;
+        if (node.right != null) {
+            node.right.left = node.left;
         } else {
-            head = node.next;
+            head = node.left;
         }
 
-        if (node.next != null) {
-            node.next.prev = node.prev;
+        if (node.left != null) {
+            node.left.right = node.right;
         } else {
-            tail = node.prev;
+            tail = node.right;
         }
     }
 
@@ -119,7 +119,7 @@ public final class LRUCache {
         while (currentNode != null) {
 
             System.out.print(currentNode);
-            currentNode = currentNode.next;
+            currentNode = currentNode.left;
         }
 
         System.out.println();

@@ -31,7 +31,8 @@ public final class SinglyLinkedList {
         Node node = sum(head, sll.head, 0);
         sllResult.head = node;
         
-        sllResult.reverseLinkedList(sllResult.head);
+        sllResult.
+                reverseLinkedList(sllResult.head);
 
         sllResult.print();
     }
@@ -67,6 +68,7 @@ public final class SinglyLinkedList {
     }
 
     private Node reverseLinkedList(Node node) {
+
         if (node == null || node.next == null) {
             return node;
         }
